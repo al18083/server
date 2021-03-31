@@ -7,13 +7,13 @@ port_num = 18083
 def get_html():
     return render_template('./index.html')
 
-@app.route('/lux', methods=['POST'])
-def update_lux():
+@app.route('/distance', methods=['POST'])
+def update_distance():
     time = request.form["time"]
-    lux = request.form["lux"]
+    lux = request.form["distance"]
     try:
         f = open(file_path, 'w')
-        f.write(time + "," + lux)
+        f.write(time + "," + distance)
         return "succeeded to write"
     except Exception as e:
         print(e)
@@ -21,17 +21,17 @@ def update_lux():
     finally:
         f.close()
 
-@app.route('/lux', methods=['GET'])
-def get_lux():
+@app.route('/distance', methods=['GET'])
+def get_distance():
     try:
         f = open(file_path, 'r')
         for row in f:
-            lux = row
+            distance = row
     except Exception as e:
         print(e)
     finally:
         f.close()
-        return lux
+        return distance
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=port_num)
