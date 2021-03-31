@@ -10,7 +10,7 @@ def get_html():
 @app.route('/distance', methods=['POST'])
 def update_distance():
     time = request.form["time"]
-    lux = request.form["distance"]
+    distance = request.form["distance"]
     try:
         f = open(file_path, 'w')
         f.write(time + "," + distance)
